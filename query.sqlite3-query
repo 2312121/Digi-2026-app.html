@@ -1,0 +1,46 @@
+-- database: ./database.db
+
+-- Users
+INSERT INTO Users (UserID, Email, Username) VALUES
+(1, 'alice@example.com', 'alice123'),
+(2, 'bob@example.com', 'bob_builder'),
+(3, 'charlie@example.com', 'charlie_pc');
+
+-- Parts
+INSERT INTO Parts (PartID, PartName, Category, Price) VALUES
+(1, 'Intel i7-12700K', 'CPU', 350),
+(2, 'AMD Ryzen 5 5600X', 'CPU', 220),
+(3, 'NVIDIA RTX 4070', 'GPU', 600),
+(4, 'Corsair 16GB RAM', 'RAM', 80),
+(5, 'Samsung 1TB SSD', 'Storage', 120),
+(6, 'ASUS B550 Motherboard', 'Motherboard', 150),
+(7, 'Cooler Master 750W PSU', 'PSU', 100),
+(8, 'NZXT H510 Case', 'Case', 90);
+
+-- Builds
+INSERT INTO Builds (BuildID, UserID, TotalCost) VALUES
+(1, 1, 1390),
+(2, 2, 960),
+(3, 3, 1140);
+
+-- BuildParts (linking builds and parts)
+INSERT INTO BuildParts (BuildPartID, PartID, BuildID) VALUES
+(1, 1, 1),
+(2, 3, 1),
+(3, 4, 1),
+(4, 5, 1),
+(5, 6, 1),
+(6, 7, 1),
+(7, 8, 1),
+
+(8, 2, 2),
+(9, 4, 2),
+(10, 5, 2),
+(11, 6, 2),
+(12, 7, 2),
+
+(13, 1, 3),
+(14, 3, 3),
+(15, 4, 3),
+(16, 5, 3),
+(17, 8, 3);

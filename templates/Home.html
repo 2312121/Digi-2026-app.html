@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>PC Builder</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        table { border-collapse: collapse; width: 60%; margin-bottom: 30px; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        a.button {
+            padding: 5px 10px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a.button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+
+<h1>PC Parts</h1>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price ($)</th>
+        <th>Action</th>
+    </tr>
+
+    {% for part in parts %}
+    <tr>
+        <td>{{ part.PartName }}</td>
+        <td>{{ part.Category }}</td>
+        <td>{{ part.Price }}</td>
+        <td>
+            <a class="button" href="/add/{{ part.PartID }}">Add</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Your Build</h2>
+
+{% if build_parts %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price ($)</th>
+        </tr>
+
+        {% for part in build_parts %}
+        <tr>
+            <td>{{ part.PartName }}</td>
+            <td>{{ part.Price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Total: ${{ total }}</h3>
+
+    <a href="/clear">Clear Build</a>
+
+{% else %}
+    <p>No parts added yet.</p>
+{% endif %}
+
+
+
+</body>
+</html>
