@@ -21,54 +21,39 @@
 <body>
 
 
-<h1>PC Parts</h1>
+<div class="container">
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Price ($)</th>
-        <th>Action</th>
-    </tr>
+  <div>
+    <h1>PC Parts</h1>
 
-    {% for part in parts %}
-    <tr>
-        <td>{{ part.PartName }}</td>
-        <td>{{ part.Category }}</td>
-        <td>{{ part.Price }}</td>
-        <td>
-            <a class="button" href="/add/{{ part.PartID }}">Add</a>
-        </td>
-    </tr>
+    <div class="parts-grid">
+      {% for part in parts %}
+        <div class="part-card">
+          <img src="{{ part.image_url }}" alt="{{ part.name }}">
+
+          <h4>{{ part.name }}</h4>
+          <p>{{ part.category }}</p>
+          <p>${{ part.price }}</p>
+
+          <a href="/add/{{ part.PartID }}" class="button">Add</a>
+          </form>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div></div> <!-- spacer -->
+
+  <div class="build">
+    <h2>Your Build</h2>
+
+    {% for part in build %}
+      <div class="build-card">
+        <img src="{{ url_for('static', filename=part.image_url) }}">
+        <h4>{{ part.name }}</h4>
+        <p>${{ part.price }}</p>
+      </div>
     {% endfor %}
-</table>
+  </div>
 
-<h2>Your Build</h2>
-
-{% if build_parts %}
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price ($)</th>
-        </tr>
-
-        {% for part in build_parts %}
-        <tr>
-            <td>{{ part.PartName }}</td>
-            <td>{{ part.Price }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <h3>Total: ${{ total }}</h3>
-
-    <a href="/clear">Clear Build</a>
-
-{% else %}
-    <p>No parts added yet.</p>
-{% endif %}
-
-
-
-</body>
-</html>
+</div>

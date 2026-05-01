@@ -23,3 +23,48 @@ img {
     gap: 3em;
     margin-top: 2em;
 }
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.part-card {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.part-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.part-card button {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  background: green;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  gap: 20px;
+}
+
+.parts-list {
+  grid-column: 1;
+}
+
+.build {
+  grid-column: 3;
+}
