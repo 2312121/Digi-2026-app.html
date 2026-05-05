@@ -3,25 +3,12 @@
 <html>
 <head>
     <title>PC Builder</title>
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        table { border-collapse: collapse; width: 60%; margin-bottom: 30px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-        th { background-color: #f4f4f4; }
-        a.button {
-            padding: 5px 10px;
-            background-color: #28a745;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        a.button:hover { background-color: #218838; }
-    </style>
 </head>
 <body>
 
 
 <div class="container">
+<link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 
   <div>
     <h1>PC Parts</h1>
@@ -29,31 +16,37 @@
     <div class="parts-grid">
       {% for part in parts %}
         <div class="part-card">
-          <img src="{{ part.image_url }}" alt="{{ part.name }}">
+          <img src="{{ part.ImageURL }}">
+          <h4>{{ part.PartName }}</h4>
+          <p>{{ part.Category }}</p>
+          <p>${{ part.Price }}</p>
 
-          <h4>{{ part.name }}</h4>
-          <p>{{ part.category }}</p>
-          <p>${{ part.price }}</p>
-
-          <a href="/add/{{ part.PartID }}" class="button">Add</a>
-          </form>
+          <form action="{{ url_for('add_part', part_id=part.PartID) }}" method="get">
+  <button type="submit" class="button">Add</button>
+</form>
         </div>
       {% endfor %}
     </div>
   </div>
 
-  <div></div> <!-- spacer -->
 
-  <div class="build">
+  <div></div>
+
+
+  <div>
     <h2>Your Build</h2>
 
-    {% for part in build %}
+    {% for part in build_parts %}
       <div class="build-card">
-        <img src="{{ url_for('static', filename=part.image_url) }}">
-        <h4>{{ part.name }}</h4>
-        <p>${{ part.price }}</p>
+        <img src="{{ part.ImageURL }}">
+        <div>
+          <h4>{{ part.PartName }}</h4>
+          <p>${{ part.Price }}</p>
+        </div>
       </div>
     {% endfor %}
+
+    <a href="/clear" class="button" style="background:red;">Reset</a>
   </div>
 
 </div>

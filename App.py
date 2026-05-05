@@ -36,7 +36,7 @@ def home():
     parts = query_db("SELECT * FROM Parts")
 
     build_ids = session.get("build", [])
-    build_ids = [pid for pid in build_ids if pid]  # clean list
+    build_ids = [pid for pid in build_ids if pid]
 
     build_parts = []
     total = 0
@@ -57,12 +57,14 @@ def home():
     return render_template(
         "Home.html",
         parts=parts,
-        build_parts=build_parts,
-        total=total
-    )
+        BuildParts=build_parts,
+        total=total 
+        )
 
 @app.route('/add/<int:part_id>')
 def add_part(part_id):
+    print("ADDING PART:", part_id) 
+
     build = session.get("build", [])
     build.append(part_id)
 
