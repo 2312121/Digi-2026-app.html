@@ -3,12 +3,12 @@
 <html>
 <head>
     <title>PC Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 </head>
 <body>
 
 
 <div class="container">
-<link rel="stylesheet" href="{{ url_for('static', filename='Style.css') }}">
 
   <div>
     <h1>PC Parts</h1>
@@ -16,7 +16,7 @@
     <div class="parts-grid">
       {% for part in parts %}
         <div class="part-card">
-          <img src="{{ part.ImageURL }} " alt="{{part.PartName}}">
+          <img src="{{ part.ImageURL }}" alt="{{part.PartName}}">
           <h4>{{ part.PartName }}</h4>
           <p>{{ part.Category }}</p>
           <p>${{ part.Price }}</p>
@@ -29,14 +29,13 @@
     </div>
   </div>
 
-
   <div></div>
 
-
   <div>
+
     <h2>Your Build</h2>
 
-    {% for part in build_parts %}
+    {% for part in BuildParts %}
       <div class="build-card">
         <img src="{{ part.ImageURL }}">
         <div>
